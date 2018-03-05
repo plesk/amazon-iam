@@ -95,14 +95,23 @@ class AmazonIAM
     public function getIAMClient()
     {
         if (empty($this->iamClient)) {
-            $this->iamClient = new \Aws\Iam\IamClient([
+            $config = [
                 'version' => $this->version,
                 'region' => $this->getRegion(),
                 'credentials' => [
                     'key' => $this->getKey(),
                     'secret' => $this->getSecret()
                 ],
-            ]);
+            ];
+            if (pm_ProductInfo::isWindows()) {
+                $caPath = __DIR__ . '/externals/cacert.pem';
+                $caPath = str_replace('/', DIRECTORY_SEPARATOR, $caPath);
+                $config = array_merge([
+                    'http' => ['verify' => $caPath],
+                ], $config);
+            }
+
+            $this->iamClient = new \Aws\Iam\IamClient($config);
         }
         return $this->iamClient;
     }
@@ -233,6 +242,23 @@ class AmazonIAM
     }
 
     /**
+     * @return bool
+     */
+    public function isAdministratorAccess()
+    {
+        $res = false;
+        try {
+            $this->getIAMClient()->getPolicy([
+                'PolicyArn' => IAMPolicy::AdministratorAccess
+            ]);
+            $res = true;
+        } catch (\Aws\Exception\AwsException $e) {
+
+        }
+        return $res;
+    }
+
+    /**
      * @param $userName
      * @return IAMAttachedPolicy[]|bool
      */
@@ -280,6 +306,23 @@ class AmazonIAM
             $res[] = new IAMPolicy($data);
         }
         return $res;
+    }
+
+    /**
+     * @param string|array $StatementAction
+     * @param string $StatementResource
+     * @param string $StatementEffect
+     *
+     * @return IAMPolicyDocument
+     */
+    public function createPolicyDocument($StatementAction, $StatementResource = '*', $StatementEffect = 'Allow')
+    {
+        $config = [
+            'StatementEffect' => $StatementEffect,
+            'StatementAction' => $StatementAction,
+            'StatementResource' => $StatementResource,
+        ];
+        return new IAMPolicyDocument($config);
     }
 
     /**

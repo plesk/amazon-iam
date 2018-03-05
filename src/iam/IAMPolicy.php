@@ -112,6 +112,7 @@ class IAMPolicy extends BaseIAMObject
     const CloudWatchActionsEC2Access = 'arn:aws:iam::aws:policy/CloudWatchActionsEC2Access';
     const AWSLambdaDynamoDBExecutionRole = 'arn:aws:iam::aws:policy/service-role/AWSLambdaDynamoDBExecutionRole';
     const AmazonRoute53DomainsFullAccess = 'arn:aws:iam::aws:policy/AmazonRoute53DomainsFullAccess';
+    const AmazonRoute53FullAccess = 'arn:aws:iam::aws:policy/AmazonRoute53FullAccess';
     const AmazonElastiCacheReadOnlyAccess = 'arn:aws:iam::aws:policy/AmazonElastiCacheReadOnlyAccess';
     const AmazonAthenaFullAccess = 'arn:aws:iam::aws:policy/AmazonAthenaFullAccess';
     const AmazonElasticFileSystemReadOnlyAccess = 'arn:aws:iam::aws:policy/AmazonElasticFileSystemReadOnlyAccess';
@@ -121,4 +122,5 @@ class IAMPolicy extends BaseIAMObject
     const AWSCloudTrailFullAccess = 'arn:aws:iam::aws:policy/AWSCloudTrailFullAccess';
     const AmazonCognitoDeveloperAuthenticatedIdentities = 'arn:aws:iam::aws:policy/AmazonCognitoDeveloperAuthenticatedIdentities';
     const AWSConfigRole = 'arn:aws:iam::aws:policy/service-role/AWSConfigRole';
+    const AdministratorAccess = 'arn:aws:iam::aws:policy/AdministratorAccess';
 }
