@@ -12,8 +12,8 @@
     "vendor-dir": "vendor"
   },
   "require": {
-    "php": "^5.5 || ^7.0",
-    "aws/aws-sdk-php": "3.*"
+    "php": "^5.5 || ^7.0 || ^8.0",
+    "aws/aws-sdk-php": "3.133.*"
   },
   "autoload": {
     "classmap": ["src/"]
