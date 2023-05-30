@@ -1,6 +1,7 @@
 {
   "name": "plesk/amazon-iam",
   "description": "PHP library to create IAM users with predefined permissions",
+  "version" : "0.2.0",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -13,7 +14,7 @@
   },
   "require": {
     "php": "^5.5 || ^7.0 || ^8.0",
-    "aws/aws-sdk-php": "3.133.*"
+    "aws/aws-sdk-php": "3.270.*"
   },
   "autoload": {
     "classmap": ["src/"]
